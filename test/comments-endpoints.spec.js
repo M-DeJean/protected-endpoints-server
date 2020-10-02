@@ -33,11 +33,11 @@ describe('Comments Endpoints', function () {
       )
     )
 
-    it(`responds 401 'Unauthorized request' when invalid password`, () => {
-      const userInvalidPass = { user_name: testUsers[0].user_name, password: 'wrong' }
+    it(`responds 401 'Unauthorized request' when invalid token`, () => {
+      const userInvalidUser = { user_name: 'Wrong User', id: 0 }
       return supertest(app)
         .post('/api/comments')
-        .set('Authorization', helpers.makeAuthHeader(userInvalidPass))
+        .set('Authorization', helpers.makeAuthHeader(userInvalidUser))
         .expect(401, { error: `Unauthorized request` })
     })
 

@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken')
 const app = require('../src/app')
 const helpers = require('./test-helpers')
 
-describe.only('Auth Endpoints', function () {
+describe('Auth Endpoints', function () {
     let db
 
     const { testUsers } = helpers.makeArticlesFixtures()
@@ -66,7 +66,7 @@ describe.only('Auth Endpoints', function () {
                 .send(userInvalidPass)
                 .expect(400, { error: `Incorrect user_name or password` })
         })
-        
+
         it(`responds 200 and JWT auth token using secret when valid credentials`, () => {
             const userValidCreds = {
                 user_name: testUser.user_name,
